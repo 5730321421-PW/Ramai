@@ -6,6 +6,7 @@ import numpy
 from midiutil.MidiFile import MIDIFile
 
 degrees  = [60, 62, 64, 65, 67, 69, 71, 72] # MIDI note number
+length = [0.25,0.5,0.75,1,1.5,2,3,4]
 track    = 0
 channel  = 0
 time     = 0   # In beats
@@ -23,8 +24,9 @@ scale = degreePy+scaleShift
 
 for i in range(19):
     pitch = random.choice(scale)
-    MyMIDI.addNote(track, channel, pitch, time, duration, volume)
-    time = time + 1
+    duration = random.choice(length)
+    MyMIDI.addNote(track, channel, pitch, duration, duration, volume)
+    time = time + duration
 
-with open("random2.mid", "wb") as output_file:
+with open("random3.mid", "wb") as output_file:
     MyMIDI.writeFile(output_file)
